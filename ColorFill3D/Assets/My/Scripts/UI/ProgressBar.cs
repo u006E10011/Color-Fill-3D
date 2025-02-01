@@ -1,0 +1,30 @@
+﻿using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Project
+{
+    public class ProgressBar : MonoBehaviour
+    {
+        [SerializeField] private Image _fill;
+        [SerializeField] private TMP_Text _countText;
+
+        private float _count;
+
+        private void OnEnable() => GameController.OnUpdateProgress += UpdateProgress;
+        private void OnDisable() => GameController.OnUpdateProgress -= UpdateProgress;
+
+        private void Start()
+        {
+            _count = Brush.Count();
+            UpdateProgress();
+        }
+
+        private void UpdateProgress()
+        {
+            _fill.fillAmount = 1f - (Brush.Count() / _count);
+            _countText.text = Brush.Count().ToString();
+        }
+    }
+}
