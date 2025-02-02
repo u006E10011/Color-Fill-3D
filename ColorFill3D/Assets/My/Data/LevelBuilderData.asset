@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04abfbdc495371743a76b9da33f90ad3, type: 3}
+  m_Name: LevelBuilderData
+  m_EditorClassIdentifier: 
+  Layer: 6
+  PositionY: 0
+  <Items>k__BackingField:
+  - Item: {fileID: 6571782547089037054, guid: a57fd72b7a036834abdd127c9371271d, type: 3}
+  - Item: {fileID: 1043580680789105807, guid: 476dbae193fcff24ab1a040ef2775739, type: 3}

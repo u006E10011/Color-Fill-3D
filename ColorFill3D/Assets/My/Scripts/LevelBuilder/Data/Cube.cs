@@ -2,7 +2,7 @@
 
 namespace Project
 {
-    public class Cube : Item
+    public class Cube : LevelBuilder.Item
     {
 
     }

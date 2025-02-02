@@ -21,7 +21,7 @@ namespace Project
         private void TryWinGame()
         {
             if (Brush.Count() == 0)
-                Win();
+                Win(); 
         }
 
         private void Win()

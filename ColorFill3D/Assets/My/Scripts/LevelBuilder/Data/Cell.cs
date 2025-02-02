@@ -2,7 +2,7 @@
 
 namespace Project
 {
-    public class Cell : Item
+    public class Cell : LevelBuilder.Item
     {
         [SerializeField] private Color32 _color = new(255, 255, 255, 255);
 
