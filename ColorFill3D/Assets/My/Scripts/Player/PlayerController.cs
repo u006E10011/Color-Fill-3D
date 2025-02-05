@@ -45,7 +45,7 @@ namespace Project
             else
                 direction = delta.y > 0 ? Vector3.forward : Vector3.back;
 
-            Physics.Raycast(transform.position, direction, out RaycastHit hitInfo, Mathf.Infinity, 1 << 8);
+            Physics.Raycast(transform.position, direction, out RaycastHit hitInfo, Mathf.Infinity, 1 << 9);
 
             if (Vector3.Distance(transform.position, hitInfo.point) > _minDIrection)
                 _direction = hitInfo.point - (direction * _offsetPositionToPoint);

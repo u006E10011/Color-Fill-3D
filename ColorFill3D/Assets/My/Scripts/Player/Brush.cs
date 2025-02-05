@@ -21,6 +21,8 @@ namespace Project
             {
                 cell.SetColor();
                 Remove(key);
+
+                GameController.OnUpdateProgress?.Invoke();
             }
         }
 

@@ -2,8 +2,8 @@
 
 namespace Project.LevelBuilder
 {
-    public class LevelBuilderUI : MonoBehaviour
+    public class ContainerItem : MonoBehaviour
     {
-        
+    
     }
 }

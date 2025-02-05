@@ -22,14 +22,5 @@ namespace Project
         {
             _renderer.color = _color;
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.GetComponent<Player>())
-            {
-                Brush.Paint(gameObject);
-                GameController.OnUpdateProgress?.Invoke();
-            }
-        }
     }
 }
