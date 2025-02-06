@@ -8,7 +8,7 @@ namespace Project
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] private Image _fill;
-        [SerializeField] private TMP_Text _countText;
+        [SerializeField] private TMP_Text _levelText;
 
         private float _count;
 
@@ -24,7 +24,7 @@ namespace Project
         private void UpdateProgress()
         {
             _fill.fillAmount = 1f - (Brush.Count() / _count);
-            _countText.text = Brush.Count().ToString();
+            _levelText.text = Brush.Count().ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,9 +12,10 @@ namespace Project.LevelBuilder
         private readonly Dictionary<Vector3, Item> _items = new();
 
         private Item _item;
-        private ContainerItem _parent;
+        private ContainerItem _container;
         private int _index;
 
+        #region InteractableButton
         public void Remove()
         {
             if (GetPoint(out var point) && Exist())
@@ -39,10 +41,12 @@ namespace Project.LevelBuilder
         public void Clear()
         {
             ValiateParent();
-            Object.DestroyImmediate(_parent.gameObject);
+            Object.DestroyImmediate(_container.gameObject);
             _items.Clear();
         }
+        #endregion
 
+        #region Auxiliary 
         public bool GetPoint(out Vector3 position)
         {
             var result = Physics.Raycast(HandleUtility.GUIPointToWorldRay(Event.current.mousePosition), out var hitInfo, Mathf.Infinity);
@@ -61,9 +65,37 @@ namespace Project.LevelBuilder
             return _item;
         }
 
+        private void ValiateParent()
+        {
+            if (_container == null)
+            {
+                _container = Object.FindAnyObjectByType<ContainerItem>(FindObjectsInactive.Include);
+
+                if (_container == null)
+                    _container = _container != null ? _container : new GameObject("Level").AddComponent<ContainerItem>();
+            }
+        }
+        #endregion
+
+        #region Core
+        public void SavePrefab(string path)
+        {
+            ValiateParent();
+            var directoryPath = Path.GetDirectoryName(path);
+
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+
+            if (!path.EndsWith(".prefab"))
+                path += ".prefab";
+
+            PrefabUtility.SaveAsPrefabAssetAndConnect(_container.gameObject, path, InteractionMode.UserAction);
+            AssetDatabase.Refresh();
+        }
+
         private void Generate(Item prefab, Vector3 point)
         {
-            var newItem = PrefabUtility.InstantiatePrefab(prefab, _parent.transform) as Item;
+            var newItem = PrefabUtility.InstantiatePrefab(prefab, _container.transform) as Item;
             newItem.transform.position = point;
             newItem.name = $"{prefab.name} {_index}";
 
@@ -78,16 +110,6 @@ namespace Project.LevelBuilder
 
             Object.DestroyImmediate(_item.gameObject);
         }
-
-        private void ValiateParent()
-        {
-            if (_parent == null)
-            {
-                _parent = Object.FindAnyObjectByType<ContainerItem>(FindObjectsInactive.Include);
-
-                if (_parent == null)
-                    _parent = _parent != null ? _parent : new GameObject("Level").AddComponent<ContainerItem>();
-            }
-        }
+        #endregion
     }
 }
