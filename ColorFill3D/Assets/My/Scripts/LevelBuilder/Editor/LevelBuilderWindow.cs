@@ -83,7 +83,9 @@ namespace Project.LevelBuilder
             _levelBuilder.IsReplaced = EditorGUILayout.Toggle("Replace", _levelBuilder.IsReplaced);
             GUILayout.Space(10);
 
-            _selectedAction = GUILayout.SelectionGrid(_selectedAction, _labels, 2, GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y));
+            var height = _labels.Length > 2 ? LabelScale.y * 1.5f : LabelScale.y;
+            var row = (_labels.Length / 2f) * height;
+            _selectedAction = GUILayout.SelectionGrid(_selectedAction, _labels, 2, GUILayout.Width(LabelScale.x), GUILayout.Height(row));
             GUILayout.Space(10);
 
             if (GUILayout.Button("Clear", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))

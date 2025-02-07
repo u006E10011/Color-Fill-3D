@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 namespace Project.LevelBuilder
@@ -28,6 +29,9 @@ namespace Project.LevelBuilder
 
             if (GetPoint(out var point))
             {
+                if (TryPlayerSpawnPoint(prefab, point))
+                    return;
+
                 if (Exist() && IsReplaced)
                 {
                     Destroy(point);
@@ -65,26 +69,33 @@ namespace Project.LevelBuilder
         }
 
         private void Generate(Item prefab, Vector3 point)
-        {
-            if (SetPlayerSpawnPoint(prefab, point))
-                return;
-
+        {          
             var newItem = PrefabUtility.InstantiatePrefab(prefab, _container.transform) as Item;
+            Undo.RegisterCreatedObjectUndo(newItem, $"Create {newItem.name}");
+
             newItem.transform.position = point;
             newItem.name = $"{prefab.name} {_index}";
 
             _items.Add(point, newItem);
             _index++;
+
+            EditorUtility.SetDirty(newItem);
         }
 
-        private bool SetPlayerSpawnPoint(Item prefab, Vector3 point)
+        private bool TryPlayerSpawnPoint(Item prefab, Vector3 point)
         {
-            if(prefab is PlayerSpawnPoint spawnPoint)
+            if (prefab is PlayerSpawnPoint)
             {
-                if(_container.PlayerPosition == null)
-                    _container.PlayerPosition = spawnPoint;
-                else
-                    _container.PlayerPosition.SetPosition(point);
+                if (_container.PlayerPosition == null)
+                {
+                    _container.PlayerPosition = PrefabUtility.InstantiatePrefab(prefab, _container.transform) as PlayerSpawnPoint;
+                    Undo.RegisterCreatedObjectUndo(_container.PlayerPosition, $"Create {_container.PlayerPosition.name}");
+                }
+
+                _container.PlayerPosition.SetPosition(point);
+                _items[Vector3.up * 999] = _container.PlayerPosition;
+
+                Undo.RegisterCompleteObjectUndo(_container.PlayerPosition, "Set new position PlayerSapwnPoint");
 
                 return true;
             }

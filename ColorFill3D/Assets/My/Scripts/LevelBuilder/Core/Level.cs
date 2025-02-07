@@ -12,7 +12,9 @@ namespace Project
             {
                 if (_playerSpawnPoint == null)
                 {
-                    Debug.LogError("Spawn Point is null");
+                    if (Application.isEditor && Application.isPlaying)
+                        Debug.LogError("Spawn Point is null");
+
                     return null;
                 }
 
