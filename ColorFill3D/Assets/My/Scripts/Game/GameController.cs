@@ -1,21 +1,17 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Project
 {
     public class GameController : MonoBehaviour
     {
-        public static Action OnUpdateProgress;
-
-
         private void OnEnable()
         {
-            OnUpdateProgress += TryWinGame;
+            EventBus.Instance.OnUpdateProgress += TryWinGame;
         }
 
         private void OnDisable()
         {
-            OnUpdateProgress -= TryWinGame;
+            EventBus.Instance.OnUpdateProgress -= TryWinGame;
         }
 
         private void TryWinGame()
@@ -27,6 +23,9 @@ namespace Project
         private void Win()
         {
             Debug.Log("Winner");
+
+            EventBus.Instance.OnCompleteLevel?.Invoke();
+            EventBus.Instance.OnUpdateProgress?.Invoke();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Project.LevelBuilder
         private int _selectedAction = default;
         private string[] _labels = new string[5];
 
-        private string _path = @"Assets/My/Prefab/Level/Level";
+        private string _path = @"Assets/My/Prefab/Resources/Level";
 
         private Vector2 LabelScale => new(position.width - 5, 30);
 

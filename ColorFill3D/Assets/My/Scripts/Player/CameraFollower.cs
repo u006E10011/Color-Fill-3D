@@ -1,23 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Project
 {
     public class CameraFollower : MonoBehaviour
     {
-        [SerializeField] private Transform _target;
-
         [SerializeField, Space(10)] private float _smoothing = 3;
-        [SerializeField] private float _radius;
+        [SerializeField] private float _offset = 0.1f;
 
-        private void LateUpdate()
-        {
-            if (Vector3.Distance(transform.position, _target.position) > _radius)
-                Follow();
-        }
+        private void OnEnable() => EventBus.Instance.OnMoveCamera += MoveToTarget;
+        private void OnDisable() => EventBus.Instance.OnMoveCamera -= MoveToTarget;
 
-        private void Follow()
+        private void MoveToTarget(Vector3 target) => StartCoroutine(Follow(target));
+
+        private IEnumerator Follow(Vector3 target)
         {
-            transform.position = Vector3.Lerp(transform.position, _target.position, _smoothing * Time.deltaTime);
+            while(Vector3.Distance(transform.position, target) > _offset)
+            {
+                transform.position = Vector3.Lerp(transform.position, target, _smoothing * Time.deltaTime);
+
+                yield return null;
+            }
         }
     }
 }

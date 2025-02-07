@@ -12,8 +12,6 @@ namespace Project.LevelBuilder
         public static bool IsMouseRightClick { get; private set; }
 
         public static bool IsCTRLPressed { get; private set; }
-        public static bool IsSHIFTPressed { get; private set; }
-
         public static bool IsClearButtonPressed;
 
         public static void Update(Event e)
@@ -21,7 +19,7 @@ namespace Project.LevelBuilder
             MouseLeft(e);
             MouseRight(e);
             CTRL(e);
-           // SHIFT(e);
+
         }
 
         private static void MouseLeft(Event e)
@@ -47,14 +45,6 @@ namespace Project.LevelBuilder
         private static void CTRL(Event e)
         {
             IsCTRLPressed = e.control;
-        }
-
-        private static void SHIFT(Event e)
-        {
-            if (e.type == EventType.KeyDown && e.keyCode == KeyCode.LeftShift)
-                IsSHIFTPressed = true;
-            else if (e.type == EventType.KeyUp && e.keyCode == KeyCode.LeftShift)
-                IsSHIFTPressed = false;
         }
     }
 }

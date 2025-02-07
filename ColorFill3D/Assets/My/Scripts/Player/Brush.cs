@@ -22,7 +22,7 @@ namespace Project
                 cell.SetColor();
                 Remove(key);
 
-                GameController.OnUpdateProgress?.Invoke();
+                EventBus.Instance.OnUpdateProgress?.Invoke();
             }
         }
 

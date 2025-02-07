@@ -12,8 +12,8 @@ namespace Project
 
         private float _count;
 
-        private void OnEnable() => GameController.OnUpdateProgress += UpdateProgress;
-        private void OnDisable() => GameController.OnUpdateProgress -= UpdateProgress;
+        private void OnEnable() => EventBus.Instance.OnUpdateProgress += UpdateProgress;
+        private void OnDisable() => EventBus.Instance.OnUpdateProgress -= UpdateProgress;
 
         private void Start()
         {
