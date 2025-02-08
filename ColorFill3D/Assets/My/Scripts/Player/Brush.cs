@@ -21,7 +21,7 @@ namespace Project
             {
                 cell.SetColor();
                 Remove(key);
-                Debug.Log("Count: " + _cell.Count);
+
                 EventBus.Instance.OnUpdateProgress?.Invoke();
             }
         }

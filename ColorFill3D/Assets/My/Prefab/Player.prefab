@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 50
-  _sensitivity: 15
+  _sensitivity: 50
   _offsetPositionToPoint: 0.5
   _offset: 0.1
 --- !u!1 &7060792917983299903

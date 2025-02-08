@@ -10,7 +10,6 @@ namespace Project.LevelBuilder
 
         [Header("Color")]
         [SerializeField] private Color32 _colorGrid = Color.blue;
-        [SerializeField] private Color32 _colorPlayer = Color.cyan;
         [SerializeField, Space(5)] private Color32 _colorEmptyCell = Color.green;
         [SerializeField] private Color32 _colorFillCell = Color.red;
 

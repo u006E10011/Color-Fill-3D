@@ -122,7 +122,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &205706508
+--- !u!1001 &302689043
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,10 +133,6 @@ PrefabInstance:
     - target: {fileID: 2211564899198745197, guid: caf9732433f4dc044845763962493607, type: 3}
       propertyPath: m_Name
       value: YandexGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211564899198745197, guid: caf9732433f4dc044845763962493607, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607, type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,7 +174,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3157483472541429372, guid: caf9732433f4dc044845763962493607, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -448,11 +445,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2022683244}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &727356034 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607, type: 3}
-  m_PrefabInstance: {fileID: 205706508}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &863373264
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,9 +806,6 @@ MonoBehaviour:
   _colorGrid:
     serializedVersion: 2
     rgba: 2315190272
-  _colorPlayer:
-    serializedVersion: 2
-    rgba: 3238002477
   _colorEmptyCell:
     serializedVersion: 2
     rgba: 2130771712
@@ -958,6 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fill: {fileID: 1597729499}
+  _data: {fileID: 11400000, guid: 3c3a50d492444b34785478a41f45c201, type: 2}
   _levelText: {fileID: 935617442}
 --- !u!1 &1242316868
 GameObject:
@@ -1141,6 +1131,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597729497}
   m_CullTransparentMesh: 1
+--- !u!4 &1717182052 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2211564899198745199, guid: caf9732433f4dc044845763962493607, type: 3}
+  m_PrefabInstance: {fileID: 302689043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1880388632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,7 +1274,7 @@ Transform:
   - {fileID: 705507995}
   - {fileID: 683191187}
   - {fileID: 963194228}
-  - {fileID: 727356034}
+  - {fileID: 1717182052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2022683245

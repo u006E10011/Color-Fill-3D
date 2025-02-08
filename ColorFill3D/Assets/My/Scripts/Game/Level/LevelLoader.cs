@@ -36,9 +36,13 @@ namespace Project
 
         private void Complete()
         {
-            _index++;
+            if (_index > _levels.Count - 1)
+                Debug.LogError($"The index ({_index}) has exceeded the maximum number of levels ({_levels.Count}). The last level will load");
 
-            YandexGame.savesData.LevelIndex++;
+            _index++;
+            _index = Mathf.Clamp(_index++, 0, _levels.Count - 1);
+
+            YandexGame.savesData.LevelIndex = _index;
             YandexGame.SaveProgress();
 
             Destroy(CurrentLevel.gameObject, _waitDestroyLevel);
@@ -47,12 +51,6 @@ namespace Project
 
         private void GetLevel()
         {
-            if (_index > _levels.Count - 1)
-            {
-                Debug.LogError($"The index ({_index}) has exceeded the maximum number of levels ({_levels.Count}). The last level will load");
-                _index = _levels.Count - 1;
-            }
-
             var position = Vector3.up * _offsetY + Vector3.forward * _nextPosition;
             CurrentLevel = Instantiate(_levels[_index], position, Quaternion.identity);
             _nextPosition += _step;

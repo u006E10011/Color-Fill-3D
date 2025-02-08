@@ -8,7 +8,10 @@ namespace Project
         [SerializeField] private Renderer _renderer;
         [SerializeField] private float _offset;
 
-        private void Start()
+        private void OnEnable() => EventBus.Instance.OnUpdateProgress += ChangeColor;
+        private void OnDisable() => EventBus.Instance.OnUpdateProgress -= ChangeColor;
+
+        private void ChangeColor()
         {
             _renderer.material.color = _data.GetColor() - _data.ColortPlayerOffset;
         }

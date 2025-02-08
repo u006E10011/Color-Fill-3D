@@ -47,7 +47,7 @@ namespace Project.LevelBuilder
         public void Clear()
         {
             ValiateParent();
-            Object.DestroyImmediate(_container.gameObject);
+            Undo.DestroyObjectImmediate(_container.gameObject);
             _items.Clear();
         }
         #endregion
@@ -142,7 +142,10 @@ namespace Project.LevelBuilder
                 _container = Object.FindAnyObjectByType<Level>(FindObjectsInactive.Include);
 
                 if (_container == null)
+                {
                     _container = _container != null ? _container : new GameObject(FileName + GetIndexLevel()).AddComponent<Level>();
+                    Undo.RegisterFullObjectHierarchyUndo(_container.gameObject, "Create container level");
+                }
             }
         }
 
