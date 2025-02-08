@@ -130,9 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ec750c923fedd46afc5e51bcfc2593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color:
-    serializedVersion: 2
-    rgba: 4293787896
+  _data: {fileID: 11400000, guid: 3c3a50d492444b34785478a41f45c201, type: 2}
   _renderer: {fileID: 4133700583541885277}
 --- !u!65 &9171086420470124769
 BoxCollider:

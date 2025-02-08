@@ -5,7 +5,6 @@ namespace Project.LevelBuilder
     public class SceneModeController : MonoBehaviour
     {
         [Header("PlayMode")]
-        [SerializeField] private Player _player;
         [SerializeField] private Camera _playerCamera;
 
         [Header("EditMode")]
@@ -13,9 +12,7 @@ namespace Project.LevelBuilder
 
         private void Awake()
         {
-            _player.gameObject.SetActive(true);
             _playerCamera.gameObject.SetActive(true);
-
             _drawGirmos.gameObject.SetActive(false);
         }
     }

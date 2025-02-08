@@ -11,17 +11,17 @@ namespace Project
 
         public static void Remove(GameObject key)
         {
-            if( _cell.ContainsKey(key))
+            if (_cell.ContainsKey(key))
                 _cell.Remove(key);
         }
 
         public static void Paint(GameObject key)
         {
-            if(_cell.TryGetValue(key, out var cell))
+            if (_cell.TryGetValue(key, out var cell))
             {
                 cell.SetColor();
                 Remove(key);
-
+                Debug.Log("Count: " + _cell.Count);
                 EventBus.Instance.OnUpdateProgress?.Invoke();
             }
         }

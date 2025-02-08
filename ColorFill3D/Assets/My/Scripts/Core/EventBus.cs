@@ -11,7 +11,9 @@ namespace Project
         public Action OnCompleteLevel;
         public Action OnNextLevel;
 
+        public Action<Level> OnMoveCamera;
+        public Action<Vector3> OnMovePlayer;
+
         public Action OnUpdateProgress;
-        public Action<Vector3> OnMoveCamera;
     }
 }

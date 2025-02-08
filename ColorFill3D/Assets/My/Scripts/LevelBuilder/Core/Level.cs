@@ -4,7 +4,7 @@ namespace Project
 {
     public class Level : MonoBehaviour
     {
-        private PlayerSpawnPoint _playerSpawnPoint;
+        [SerializeField] private PlayerSpawnPoint _playerSpawnPoint;
 
         public PlayerSpawnPoint PlayerPosition
         {

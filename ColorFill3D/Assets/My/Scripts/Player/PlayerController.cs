@@ -15,6 +15,9 @@ namespace Project
         private Vector3 _targetPosition;
         private Vector2 _startTouchPosition;
 
+        private void OnEnable() => EventBus.Instance.OnMovePlayer += SetNewPosition;
+        private void OnDisable() => EventBus.Instance.OnMovePlayer -= SetNewPosition;
+
         private void Start() => _targetPosition = transform.position;
 
         private void Update()
@@ -34,7 +37,10 @@ namespace Project
                 Vector2 delta = currentTouchPosition - _startTouchPosition;
 
                 if (delta.magnitude > _sensitivity)
+                {
                     GetDirection(delta);
+                    _startTouchPosition = Input.mousePosition;
+                }
             }
         }
 
@@ -62,6 +68,12 @@ namespace Project
 
             if (!_isCompleteMove)
                 transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
+        }
+
+        private void SetNewPosition(Vector3 vector)
+        {
+            transform.position = vector;
+            _targetPosition = vector;
         }
 
 #if UNITY_EDITOR

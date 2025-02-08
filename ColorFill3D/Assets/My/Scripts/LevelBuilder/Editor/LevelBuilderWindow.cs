@@ -11,8 +11,6 @@ namespace Project.LevelBuilder
         private int _selectedAction = default;
         private string[] _labels = new string[5];
 
-        private string _path = @"Assets/My/Prefab/Resources/Level";
-
         private Vector2 LabelScale => new(position.width - 5, 30);
 
         private LevelBuilder _levelBuilder;
@@ -54,7 +52,7 @@ namespace Project.LevelBuilder
                 return;
 
             var mouseLeft = IsMouseLeftPressed || IsMouseLeftClick;
-            var mouseRight = IsMouseRightPressed ||IsMouseRightClick;
+            var mouseRight = IsMouseRightPressed || IsMouseRightClick;
 
             var add = IsCTRLPressed && mouseLeft;
             var remove = IsCTRLPressed && mouseRight;
@@ -95,12 +93,13 @@ namespace Project.LevelBuilder
         private void SavePrefab()
         {
             GUILayout.Space(20);
-            _path = EditorGUILayout.TextField("Path", _path, GUILayout.Width(position.x));
+            _levelBuilder.DirectoryPath = EditorGUILayout.TextField("Path", _levelBuilder.DirectoryPath, GUILayout.Width(position.x));
+            _levelBuilder.FileName = EditorGUILayout.TextField("FileName", _levelBuilder.FileName, GUILayout.Width(position.x));
 
             GUILayout.Space(10);
 
             if (GUILayout.Button("Save", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
-                _levelBuilder.SavePrefab(_path);
+                _levelBuilder.SavePrefab();
         }
     }
 }

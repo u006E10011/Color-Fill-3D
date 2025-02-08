@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 namespace Project.LevelBuilder
@@ -12,9 +11,12 @@ namespace Project.LevelBuilder
 
         private readonly Dictionary<Vector3, Item> _items = new();
 
+        private int _index;
+        public string DirectoryPath = @"Assets/My/Prefab/Resources/";
+        public string FileName = "Level";
+
         private Item _item;
         private Level _container;
-        private int _index;
 
         #region InteractableButton
         public void Remove()
@@ -51,18 +53,20 @@ namespace Project.LevelBuilder
         #endregion
 
         #region Core
-        public void SavePrefab(string path)
+        public void SavePrefab()
         {
             ValiateParent();
 
+            var path = DirectoryPath;
             var directoryPath = Path.GetDirectoryName(path);
-            path += GetIndexLevel(directoryPath);
+
+            if (!path.EndsWith("/"))
+                path += "/";
+
+            path += _container.gameObject.name + ".prefab";
 
             if (!Directory.Exists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
-
-            if (!path.EndsWith(".prefab"))
-                path += ".prefab";
 
             PrefabUtility.SaveAsPrefabAssetAndConnect(_container.gameObject, path, InteractionMode.UserAction);
             AssetDatabase.Refresh();
@@ -138,12 +142,13 @@ namespace Project.LevelBuilder
                 _container = Object.FindAnyObjectByType<Level>(FindObjectsInactive.Include);
 
                 if (_container == null)
-                    _container = _container != null ? _container : new GameObject("Level").AddComponent<Level>();
+                    _container = _container != null ? _container : new GameObject(FileName + GetIndexLevel()).AddComponent<Level>();
             }
         }
 
-        private string GetIndexLevel(string path)
+        private string GetIndexLevel()
         {
+            var path = Path.GetDirectoryName(DirectoryPath);
             return "_" + Directory.GetFiles(path, "*.prefab").Length.ToString();
         }
         #endregion

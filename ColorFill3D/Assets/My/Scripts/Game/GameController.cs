@@ -25,7 +25,6 @@ namespace Project
             Debug.Log("Winner");
 
             EventBus.Instance.OnCompleteLevel?.Invoke();
-            EventBus.Instance.OnUpdateProgress?.Invoke();
         }
     }
 }

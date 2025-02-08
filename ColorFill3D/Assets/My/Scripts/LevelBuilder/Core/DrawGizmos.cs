@@ -6,7 +6,6 @@ namespace Project.LevelBuilder
     public class DrawGizmos : MonoBehaviour
     {
         [SerializeField] private LevelBuilder _levelBuilder;
-        [SerializeField] private Player _player;
         [SerializeField, Space(10)] private Vector3 _grid;
 
         [Header("Color")]
@@ -23,7 +22,6 @@ namespace Project.LevelBuilder
         {
             DrawGrid();
             DrawCube();
-            DrawPlayer();
         }
 
         private void DrawGrid()
@@ -33,7 +31,7 @@ namespace Project.LevelBuilder
 
             Gizmos.color = _colorGrid;
 
-            Vector3 scale = _player.transform.localScale;
+            Vector3 scale = Vector3.one;
             Vector3 center = transform.position;
 
             Vector3 start = center - new Vector3(_grid.x * scale.x, _grid.y * scale.y, _grid.z * scale.z) * 0.5f;
@@ -72,7 +70,7 @@ namespace Project.LevelBuilder
         #region Raycast
         private void DrawCube()
         {
-            var scale = _player.transform.localScale;
+            var scale = Vector3.one;
 
             if (GetPoint(out var point))
             {
@@ -107,11 +105,5 @@ namespace Project.LevelBuilder
         }
         #endregion
 
-        private void DrawPlayer()
-        {
-            Gizmos.color = _colorPlayer;
-            Gizmos.DrawCube(_player.transform.position, _player.transform.localScale);
-
-        }
     }
 }
