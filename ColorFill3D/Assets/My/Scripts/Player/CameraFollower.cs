@@ -13,6 +13,7 @@ namespace Project
 
         [SerializeField, Space(10)] private float _smoothing = 3;
 
+        [SerializeField] private float _minValueToCalculateRatio = 8;
         [SerializeField] private float _minFieldOfView = 50f;
         [SerializeField] private float _ratioFieldOfView = 3.823529f;
         [SerializeField] private Camera _camera;
@@ -60,10 +61,12 @@ namespace Project
 
         private void CalculateFiledOfView(List<Transform> sortX, List<Transform> sortZ)
         {
-            var x = Mathf.Abs(sortX[0].position.x) + sortX[^1].position.x;
-            var z = Mathf.Abs(sortZ[0].position.z) + sortZ[^1].position.z;
+            var x = Mathf.Abs(sortX[0].localPosition.x) + sortX[^1].localPosition.x;
+            var z = Mathf.Abs(sortZ[0].localPosition.z) + sortZ[^1].localPosition.z;
 
-            var value = _ratioFieldOfView *  (x < z ? x : z); 
+            var count = System.Math.Max(x, z);
+            var value = count > _minValueToCalculateRatio ? _minFieldOfView + ((count  - _minValueToCalculateRatio) * _ratioFieldOfView) : _camera.fieldOfView;
+            Debug.Log($"Count: {count} || Value: {value}");
             _camera.fieldOfView = Mathf.Clamp(value, _minFieldOfView, int.MaxValue);
         }
     }

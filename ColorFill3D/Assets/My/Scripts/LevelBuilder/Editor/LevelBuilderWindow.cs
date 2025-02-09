@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace Project.LevelBuilder
 
         private LevelBuilder _levelBuilder;
         private LevelBuilderData _data;
+        private DrawGizmos _gizmo;
+        private GameObject _gizmoContainer;
 
         private void OnEnable()
         {
@@ -23,6 +26,8 @@ namespace Project.LevelBuilder
             _data = AssetDatabase.LoadAssetAtPath(@"Assets/My/Data/LevelBuilderData.asset", typeof(LevelBuilderData)) as LevelBuilderData;
             _levelBuilder = new();
             _labels = _data.Items.Select(p => p.name).ToArray();
+
+            CreateGizmos();
         }
 
         private void OnDisable()
@@ -39,6 +44,7 @@ namespace Project.LevelBuilder
 
         private void OnGUI()
         {
+            GizmosInput();
             EditorButton();
             SavePrefab();
         }
@@ -101,5 +107,35 @@ namespace Project.LevelBuilder
             if (GUILayout.Button("Save", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
                 _levelBuilder.SavePrefab();
         }
+
+        #region DrawGizmos
+        private void GizmosInput()
+        {
+            _gizmo.Grid= EditorGUILayout.Vector3Field("GridSize", _gizmo.Grid);
+            GUILayout.Space(10);
+
+            _gizmo.ColorGrid = EditorGUILayout.ColorField("ColorGrid", _gizmo.ColorGrid);
+            _gizmo.ColorEmptyCell = EditorGUILayout.ColorField("ColorEmptyCell", _gizmo.ColorEmptyCell);
+            _gizmo.ColorFullCell = EditorGUILayout.ColorField("ColorFullCell", _gizmo.ColorFullCell);
+            GUILayout.Space(10);
+
+            _gizmo.IsDraw = EditorGUILayout.Toggle("IsDraw", _gizmo.IsDraw);
+        }
+
+        private void CreateGizmos()
+        {
+            DrawGizmos container = FindObjectOfType<DrawGizmos>();
+
+            if (container)
+                DestroyImmediate(container.gameObject);
+
+            if (_gizmoContainer == null)
+            {
+                _gizmoContainer = new GameObject("Gizmos");
+                _gizmo = _gizmoContainer.AddComponent<DrawGizmos>();
+                _gizmo.LevelBuilder = _levelBuilder;
+            }
+        }
+        #endregion
     }
 }

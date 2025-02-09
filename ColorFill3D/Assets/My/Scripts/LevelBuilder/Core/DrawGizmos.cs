@@ -5,15 +5,17 @@ namespace Project.LevelBuilder
 {
     public class DrawGizmos : MonoBehaviour
     {
-        [SerializeField] private LevelBuilder _levelBuilder;
-        [SerializeField, Space(10)] private Vector3 _grid;
+        public LevelBuilder LevelBuilder;
+        [Space(10)] public Vector3 Grid = new(10, 1, 10);
 
         [Header("Color")]
-        [SerializeField] private Color32 _colorGrid = Color.blue;
-        [SerializeField, Space(5)] private Color32 _colorEmptyCell = Color.green;
-        [SerializeField] private Color32 _colorFillCell = Color.red;
+        public Color32 ColorGrid = Color.blue;
 
-        [SerializeField, Space(10)] private bool _isDraw = true;
+        [Space(5)]
+        public Color32 ColorEmptyCell = Color.green;
+        public Color32 ColorFullCell = Color.red;
+
+        [Space(10)] public bool IsDraw = true;
 
         private Item _item;
 
@@ -25,42 +27,41 @@ namespace Project.LevelBuilder
 
         private void DrawGrid()
         {
-            if (!_isDraw || Application.isPlaying)
+            if (!IsDraw || Application.isPlaying)
                 return;
 
-            Gizmos.color = _colorGrid;
+            Gizmos.color = ColorGrid;
 
             Vector3 scale = Vector3.one;
-            Vector3 center = transform.position;
+            Vector3 center = transform.position + new Vector3(.5f, 0, .5f);
+            Vector3 start = center - new Vector3(Grid.x * scale.x, Grid.y * scale.y, Grid.z * scale.z) * 0.5f;
 
-            Vector3 start = center - new Vector3(_grid.x * scale.x, _grid.y * scale.y, _grid.z * scale.z) * 0.5f;
-
-            for (int y = 0; y <= _grid.y; y++)
+            for (int y = 0; y <= Grid.y; y++)
             {
-                for (int z = 0; z <= _grid.z; z++)
+                for (int z = 0; z <= Grid.z; z++)
                 {
                     Vector3 lineStart = start + new Vector3(0, y * scale.y, z * scale.z);
-                    Vector3 lineEnd = lineStart + new Vector3(_grid.x * scale.x, 0, 0);
+                    Vector3 lineEnd = lineStart + new Vector3(Grid.x * scale.x, 0, 0);
                     Gizmos.DrawLine(lineStart, lineEnd);
                 }
             }
 
-            for (int x = 0; x <= _grid.x; x++)
+            for (int x = 0; x <= Grid.x; x++)
             {
-                for (int z = 0; z <= _grid.z; z++)
+                for (int z = 0; z <= Grid.z; z++)
                 {
                     Vector3 lineStart = start + new Vector3(x * scale.x, 0, z * scale.z);
-                    Vector3 lineEnd = lineStart + new Vector3(0, _grid.y * scale.y, 0);
+                    Vector3 lineEnd = lineStart + new Vector3(0, Grid.y * scale.y, 0);
                     Gizmos.DrawLine(lineStart, lineEnd);
                 }
             }
 
-            for (int x = 0; x <= _grid.x; x++)
+            for (int x = 0; x <= Grid.x; x++)
             {
-                for (int y = 0; y <= _grid.y; y++)
+                for (int y = 0; y <= Grid.y; y++)
                 {
                     Vector3 lineStart = start + new Vector3(x * scale.x, y * scale.y, 0);
-                    Vector3 lineEnd = lineStart + new Vector3(0, 0, _grid.z * scale.z);
+                    Vector3 lineEnd = lineStart + new Vector3(0, 0, Grid.z * scale.z);
                     Gizmos.DrawLine(lineStart, lineEnd);
                 }
             }
@@ -75,12 +76,12 @@ namespace Project.LevelBuilder
             {
                 if (!Exist(_item))
                 {
-                    Gizmos.color = _colorEmptyCell;
+                    Gizmos.color = ColorEmptyCell;
                     Gizmos.DrawCube(point, scale);
                 }
                 else
                 {
-                    Gizmos.color = _colorFillCell;
+                    Gizmos.color = ColorFullCell;
                     Gizmos.DrawCube(point, scale);
                 }
             }
