@@ -122,6 +122,61 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &132815125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132815127}
+  - component: {fileID: 132815126}
+  m_Layer: 0
+  m_Name: Gizmos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &132815126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132815125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cde4d17e4f80ac468d13f5d3270e418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Grid: {x: 10, y: 1, z: 10}
+  ColorGrid:
+    serializedVersion: 2
+    rgba: 4294901760
+  ColorEmptyCell:
+    serializedVersion: 2
+    rgba: 4278255360
+  ColorFullCell:
+    serializedVersion: 2
+    rgba: 4278190335
+  IsDraw: 1
+--- !u!4 &132815127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132815125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &302689043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -737,7 +792,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 10.45, z: -3.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1242316872}
   m_Father: {fileID: 2022683244}
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0.003}
 --- !u!114 &963194229
@@ -994,67 +1050,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242316868}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.99, y: 3.99, z: 3.99}
+  m_LocalRotation: {x: -0.6427876, y: 0.00001685099, z: -0.000020082232, w: 0.7660445}
+  m_LocalPosition: {x: 0.00007018246, y: 1.3385696, z: 11.354947}
+  m_LocalScale: {x: 3.99, y: 3.9899995, z: 3.9899995}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1556343596
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1556343598}
-  - component: {fileID: 1556343597}
-  m_Layer: 0
-  m_Name: Gizmos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1556343597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556343596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cde4d17e4f80ac468d13f5d3270e418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Grid: {x: 10, y: 1, z: 10}
-  ColorGrid:
-    serializedVersion: 2
-    rgba: 4294901760
-  ColorEmptyCell:
-    serializedVersion: 2
-    rgba: 4278255360
-  ColorFullCell:
-    serializedVersion: 2
-    rgba: 4278190335
-  IsDraw: 1
---- !u!4 &1556343598
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1556343596}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597729497
 GameObject:
@@ -1298,5 +1299,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 2022683244}
   - {fileID: 1880388636}
-  - {fileID: 1242316872}
-  - {fileID: 1556343598}
+  - {fileID: 132815127}

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +15,7 @@ namespace Project.LevelBuilder
 
         private LevelBuilder _levelBuilder;
         private LevelBuilderData _data;
+        private SpawnCoin _spawnCoin;
         private DrawGizmos _gizmo;
         private GameObject _gizmoContainer;
 
@@ -25,6 +25,8 @@ namespace Project.LevelBuilder
 
             _data = AssetDatabase.LoadAssetAtPath(@"Assets/My/Data/LevelBuilderData.asset", typeof(LevelBuilderData)) as LevelBuilderData;
             _levelBuilder = new();
+            _spawnCoin = new();
+
             _labels = _data.Items.Select(p => p.name).ToArray();
 
             CreateGizmos();
@@ -45,7 +47,7 @@ namespace Project.LevelBuilder
         private void OnGUI()
         {
             GizmosInput();
-            EditorButton();
+            PaintObject();
             SavePrefab();
         }
 
@@ -82,7 +84,7 @@ namespace Project.LevelBuilder
             }
         }
 
-        private void EditorButton()
+        private void PaintObject()
         {
             _levelBuilder.IsReplaced = EditorGUILayout.Toggle("Replace", _levelBuilder.IsReplaced);
             GUILayout.Space(10);
@@ -90,10 +92,28 @@ namespace Project.LevelBuilder
             var height = _labels.Length > 2 ? LabelScale.y * 1.5f : LabelScale.y;
             var row = (_labels.Length / 2f) * height;
             _selectedAction = GUILayout.SelectionGrid(_selectedAction, _labels, 2, GUILayout.Width(LabelScale.x), GUILayout.Height(row));
-            GUILayout.Space(10);
+
+            Coin();
 
             if (GUILayout.Button("Clear", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
                 _levelBuilder.Clear();
+        }
+
+        private void Coin()
+        {
+            GUILayout.Space(10);
+
+            _spawnCoin.OffsetY = EditorGUILayout.FloatField("Offset Y", _spawnCoin.OffsetY);
+
+            if (GUILayout.Button("Generate Coin", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
+            {
+                var data = _data.Items.Find(p => p.Item is Coin);
+                _spawnCoin.Generate(data.Item, _levelBuilder.Items.Values.ToList());
+            }
+            if (GUILayout.Button("Clear Coin", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
+                _spawnCoin.Clear();
+
+            GUILayout.Space(10);
         }
 
         private void SavePrefab()

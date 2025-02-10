@@ -9,7 +9,7 @@ namespace Project.LevelBuilder
     {
         public bool IsReplaced;
 
-        private readonly Dictionary<Vector3, Item> _items = new();
+        public readonly Dictionary<Vector3, Item> Items = new();
 
         private int _index;
         public string DirectoryPath = @"Assets/My/Prefab/Resources/";
@@ -39,7 +39,7 @@ namespace Project.LevelBuilder
                     Destroy(point);
                     Generate(prefab, point);
                 }
-                else if (!Exist() && !_items.ContainsKey(point))
+                else if (!Exist() && !Items.ContainsKey(point))
                     Generate(prefab, point);
             }
         }
@@ -48,7 +48,7 @@ namespace Project.LevelBuilder
         {
             ValiateParent();
             Undo.DestroyObjectImmediate(_container.gameObject);
-            _items.Clear();
+            Items.Clear();
         }
         #endregion
 
@@ -80,7 +80,7 @@ namespace Project.LevelBuilder
             newItem.transform.position = point;
             newItem.name = $"{prefab.name} {_index}";
 
-            _items.Add(point, newItem);
+            Items.Add(point, newItem);
             _index++;
 
             EditorUtility.SetDirty(newItem);
@@ -97,7 +97,7 @@ namespace Project.LevelBuilder
                 }
 
                 _container.PlayerPosition.SetPosition(point);
-                _items[Vector3.up * 999] = _container.PlayerPosition;
+                Items[Vector3.up * 999] = _container.PlayerPosition;
 
                 Undo.RegisterCompleteObjectUndo(_container.PlayerPosition, "Set new position PlayerSapwnPoint");
 
@@ -109,8 +109,8 @@ namespace Project.LevelBuilder
 
         private void Destroy(Vector3 point)
         {
-            if (_items.ContainsKey(point))
-                _items.Remove(point);
+            if (Items.ContainsKey(point))
+                Items.Remove(point);
 
             Object.DestroyImmediate(_item.gameObject);
         }

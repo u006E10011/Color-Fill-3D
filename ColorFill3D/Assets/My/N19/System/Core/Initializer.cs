@@ -35,7 +35,6 @@ namespace N19
         {
             SetTargetFrame(DataProvider.Data.TargetFrameRate);
             CursorController.IsVisible(DataProvider.Data.VisibleCursor);
-            InputPlayer.IsLockInput = DataProvider.Data.LockInput;
         }
 
         public void SetTargetFrame(int frame)

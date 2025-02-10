@@ -107,7 +107,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4628137745216863032
 Rigidbody:
@@ -163,10 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f836e60085f6bd479dc0a5dcfa27350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 50
+  _speed: 40
   _sensitivity: 50
   _offsetPositionToPoint: 0.5
   _offset: 0.1
+  _sound:
+    _startMove: {fileID: 8300000, guid: 52df4d5411bba3141b6aff80a1686d14, type: 3}
+    _endMoving: {fileID: 8300000, guid: 137b7dd0b2efd394bbfc2141aa190cbf, type: 3}
 --- !u!1 &7060792917983299903
 GameObject:
   m_ObjectHideFlags: 0

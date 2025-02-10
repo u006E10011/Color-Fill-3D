@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Project
+namespace Project.LevelBuilder
 {
-    public class LevelData 
+    public class LevelData
     {
-
+        public Vector3 PlayerSpawnPoint;
+        public List<Vector3> Cube = new();
+        public List<Vector3> Cell = new();
+        public List<Vector3> Coin = new();
     }
 }

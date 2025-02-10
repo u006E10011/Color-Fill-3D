@@ -15,6 +15,8 @@ namespace Project
         private Vector3 _targetPosition;
         private Vector2 _startTouchPosition;
 
+        public PlayerSoundController _sound;
+
         private void OnEnable() => EventBus.Instance.OnMovePlayer += SetNewPosition;
         private void OnDisable() => EventBus.Instance.OnMovePlayer -= SetNewPosition;
 
@@ -57,6 +59,7 @@ namespace Project
             {
                 Physics.Raycast(transform.position, direction, out RaycastHit hitInfo, Mathf.Infinity, 1 << 9);
                 _targetPosition = hitInfo.point - (direction * _offsetPositionToPoint);
+                _sound.PlayStartMoving(_targetPosition);
             }
 
             return _targetPosition;
@@ -68,6 +71,8 @@ namespace Project
 
             if (!_isCompleteMove)
                 transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
+            else
+                _sound.PlayEndMoning();
         }
 
         private void SetNewPosition(Vector3 vector)
