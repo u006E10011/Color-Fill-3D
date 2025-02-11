@@ -122,61 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &132815125
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 132815127}
-  - component: {fileID: 132815126}
-  m_Layer: 0
-  m_Name: Gizmos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &132815126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132815125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cde4d17e4f80ac468d13f5d3270e418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Grid: {x: 10, y: 1, z: 10}
-  ColorGrid:
-    serializedVersion: 2
-    rgba: 4294901760
-  ColorEmptyCell:
-    serializedVersion: 2
-    rgba: 4278255360
-  ColorFullCell:
-    serializedVersion: 2
-    rgba: 4278190335
-  IsDraw: 1
---- !u!4 &132815127
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 132815125}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &302689043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -402,7 +347,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6b2ec6916e5cd4694c9070e9195e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _path: 
+  _levelBuilderData: {fileID: 11400000, guid: 0e092d888523c724db227b54152becef, type: 2}
+  _levelSaver: {fileID: 0}
+  _path: Assets/StreamingAssets/Level_0.json
   _step: 15
   _offsetY: 0.5
   _waitDestroyLevel: 3
@@ -1291,12 +1238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b7ea1f069b1e149b4a8327f88a12a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCamera: {fileID: 963194227}
-  _drawGirmos: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2022683244}
   - {fileID: 1880388636}
-  - {fileID: 132815127}

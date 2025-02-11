@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +6,7 @@ namespace Project.LevelBuilder
 {
     public class SpawnCoin
     {
+#if UNITY_EDITOR
         public float OffsetY = .5f;
 
         private List<Coin> _items = new();
@@ -24,7 +24,7 @@ namespace Project.LevelBuilder
 
             foreach (var point in cell)
             {
-                var item = PrefabUtility.InstantiatePrefab(prefab, _containerCoin) as Coin;
+                var item = UnityEditor.PrefabUtility.InstantiatePrefab(prefab, _containerCoin) as Coin;
                 item.transform.position = point.transform.position + Vector3.up * OffsetY;
                 item.name = $"Coint {index}";
 
@@ -37,7 +37,7 @@ namespace Project.LevelBuilder
             if (_containerCoin == null)
                 return;
 
-            Undo.DestroyObjectImmediate(_containerCoin.gameObject);
+            UnityEditor.Undo.DestroyObjectImmediate(_containerCoin.gameObject);
             _items = new();
         }
 
@@ -51,7 +51,7 @@ namespace Project.LevelBuilder
 
             var container = new GameObject("Container Coin").transform;
             container.parent = _containerLevel;
-            Undo.RegisterCreatedObjectUndo(container.gameObject, container.gameObject.name);
+            UnityEditor.Undo.RegisterCreatedObjectUndo(container.gameObject, container.gameObject.name);
 
             return container;
         }
@@ -63,5 +63,6 @@ namespace Project.LevelBuilder
 
             return container;
         }
+#endif
     }
 }

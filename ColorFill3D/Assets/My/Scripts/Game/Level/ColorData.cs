@@ -17,7 +17,7 @@ namespace Project
 
         public Color GetColor()
         {
-            var index = (int)(YandexGame.savesData.LevelIndex / 10f);
+            var index = Mathf.Clamp((int)(YandexGame.savesData.LevelIndex / 10f), 0, ColorBrush.Count - 1);
             return ColorBrush[index];
         }
     }

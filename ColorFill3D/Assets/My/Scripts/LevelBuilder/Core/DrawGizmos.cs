@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 using UnityEngine;
 
 namespace Project.LevelBuilder
@@ -107,3 +109,4 @@ namespace Project.LevelBuilder
 
     }
 }
+#endif
