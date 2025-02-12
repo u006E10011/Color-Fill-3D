@@ -35,6 +35,7 @@ namespace Project.LevelBuilder
         private void OnDisable()
         {
             SceneView.duringSceneGui -= OnSceneGUI;
+            DestroyImmediate(_gizmoContainer);
         }
 
         [MenuItem("Tool/LevelBuilder")]
@@ -108,7 +109,7 @@ namespace Project.LevelBuilder
             if (GUILayout.Button("Generate Coin", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
             {
                 var data = _data.Items.Find(p => p.Item is Coin);
-                _spawnCoin.Generate(data.Item, _levelBuilder.Items.Values.ToList());
+                _spawnCoin.Generate(data.Item);
             }
             if (GUILayout.Button("Clear Coin", GUILayout.Width(LabelScale.x), GUILayout.Height(LabelScale.y)))
                 _spawnCoin.Clear();

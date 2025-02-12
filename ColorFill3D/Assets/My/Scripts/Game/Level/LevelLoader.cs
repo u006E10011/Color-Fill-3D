@@ -65,6 +65,8 @@ namespace Project
                 Instantiate(_levelBuilderData.Items[0].Item, data.Cube[i], Quaternion.identity, level.transform);
             for (int i = 0; i < data.Cell.Count; i++)
                 Instantiate(_levelBuilderData.Items[1].Item, data.Cell[i], Quaternion.identity, level.transform);
+            for (int i = 0; i < data.Coin.Count; i++)
+                Instantiate(_levelBuilderData.Items[3 ].Item, data.Coin[i], Quaternion.identity, level.transform);
 
             level.PlayerPosition = spawnPoint;
             spawnPoint.transform.parent = level.transform;

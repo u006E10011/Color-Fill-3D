@@ -25,7 +25,12 @@ namespace Project
         private void Update()
         {
             InputHandler();
+        }
+
+        private void FixedUpdate()
+        {
             Move();
+
         }
 
         private void InputHandler()

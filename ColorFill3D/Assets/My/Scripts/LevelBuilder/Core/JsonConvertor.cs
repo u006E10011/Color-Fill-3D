@@ -74,7 +74,12 @@ namespace Project.LevelBuilder
                     return null;
                 }
 
-                return Directory.GetFiles(Path.GetDirectoryName(path), "*.json").ToList();
+                return Directory.GetFiles(Path.GetDirectoryName(path), "*.json").OrderBy(file =>
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(file);
+                    string numberPart = new string(fileName.Where(char.IsDigit).ToArray());
+                    return int.Parse(numberPart);
+                }).ToList();
             }
             catch (System.Exception e)
             {

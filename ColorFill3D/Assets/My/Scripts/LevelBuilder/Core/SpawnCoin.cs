@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Project.LevelBuilder
 {
@@ -11,20 +10,17 @@ namespace Project.LevelBuilder
 
         private List<Coin> _items = new();
         private Transform _containerLevel;
-        private Transform _containerCoin;
 
-        public void Generate(Item prefab, List<Item> items)
+        public void Generate(Item prefab)
         {
             if (!ContainerLevel())
                 return;
 
             var index = 0;
-            var cell = items.FindAll(p => p is Cell).ToList();
-            _containerCoin = ContainerCoin();
 
-            foreach (var point in cell)
+            foreach (var point in FindAllCell())
             {
-                var item = UnityEditor.PrefabUtility.InstantiatePrefab(prefab, _containerCoin) as Coin;
+                var item = UnityEditor.PrefabUtility.InstantiatePrefab(prefab, _containerLevel) as Coin;
                 item.transform.position = point.transform.position + Vector3.up * OffsetY;
                 item.name = $"Coint {index}";
 
@@ -34,27 +30,26 @@ namespace Project.LevelBuilder
 
         public void Clear()
         {
-            if (_containerCoin == null)
+            if (_containerLevel == null)
                 return;
 
-            UnityEditor.Undo.DestroyObjectImmediate(_containerCoin.gameObject);
+            UnityEditor.Undo.DestroyObjectImmediate(_containerLevel.gameObject);
             _items = new();
         }
 
-        private Transform ContainerCoin()
+        private List<Cell> FindAllCell()
         {
-            var obj = GameObject.Find("Container Coin");
-            _containerCoin = obj != null ? obj.transform : null;
+            var cell = new List<Cell>();
 
-            if (_containerCoin != null)
-                Object.DestroyImmediate(_containerCoin.gameObject);
+            foreach (Transform item in _containerLevel)
+            {
+                if (item.gameObject.TryGetComponent<Cell>(out var Item))
+                    cell.Add(Item);
+            }
 
-            var container = new GameObject("Container Coin").transform;
-            container.parent = _containerLevel;
-            UnityEditor.Undo.RegisterCreatedObjectUndo(container.gameObject, container.gameObject.name);
-
-            return container;
+            return cell;
         }
+
 
         private bool ContainerLevel()
         {

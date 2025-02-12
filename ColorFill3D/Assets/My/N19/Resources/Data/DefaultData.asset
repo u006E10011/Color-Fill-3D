@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DefaultData
   m_EditorClassIdentifier: 
   TargetFrameRate: 60
-  VisibleCursor: 0
+  VisibleCursor: 1
   LockInput: 0

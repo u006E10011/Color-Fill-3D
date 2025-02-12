@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Project.LevelBuilder
@@ -27,6 +28,10 @@ namespace Project.LevelBuilder
         public void LoadJson()
         {
             var path = _jsonConvertor.LoadAllPath(_path);
+            _levelData = new();
+
+            if (path.Count == 0)
+                return;
 
             foreach (var item in path)
             {
