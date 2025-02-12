@@ -7,9 +7,7 @@ namespace Project
     public class LevelLoader : MonoBehaviour
     {
         [SerializeField] private LevelBuilderData _levelBuilderData;
-        [SerializeField] private LevelSaver _levelSaver;
-
-        [SerializeField] private string _path = "Level";
+        [SerializeField] private LevelSaverProvider _levelDataProvider;
 
         [SerializeField] private float _step = 30;
         [SerializeField] private float _offsetY = .5f;
@@ -18,7 +16,6 @@ namespace Project
 
         public Level CurrentLevel { get; private set; }
 
-        private LevelData _levelData;
         private float _nextPosition;
         private int _index;
 
@@ -27,25 +24,17 @@ namespace Project
 
         public void Init()
         {
-            _levelData = new JsonConvertor().Load(_path);
             _index = YandexGame.savesData.LevelIndex;
-
             GetLevel();
         }
 
         private void Complete()
         {
-            //if (_index > _levels.Count - 1)
-            //    Debug.LogError($"The index ({_index}) has exceeded the maximum number of levels ({_levels.Count}). The last level will load");
+            if (_index > _levelDataProvider.Data.Count - 1)
+                Debug.LogError($"The index ({_index}) has exceeded the maximum number of levels ({_levelDataProvider.Data.Count}). The last level will load");
 
-            try
-            {
-                _index++;
-            }
-            catch (System.Exception)
-            {
-                _index--;
-            }
+            _index++;
+            _index = Mathf.Clamp(_index++, 0, _levelDataProvider.Data.Count - 1);
 
 
             YandexGame.savesData.LevelIndex = _index;
@@ -58,27 +47,29 @@ namespace Project
         private void GetLevel()
         {
             var position = Vector3.up * _offsetY + Vector3.forward * _nextPosition;
-            CurrentLevel = CreateLevel();
+            CurrentLevel = CreateLevel(_levelDataProvider.Data[_index]);
             _nextPosition += _step;
+            CurrentLevel.transform.position = position;
 
             EventBus.Instance.OnNextLevel?.Invoke();
             EventBus.Instance.OnMoveCamera?.Invoke(CurrentLevel);
             EventBus.Instance.OnMovePlayer?.Invoke(CurrentLevel.PlayerPosition.Point);
         }
 
-        private Level CreateLevel()
-        {
+        private Level CreateLevel(LevelData data)
+        { 
             var level = new GameObject("Level").AddComponent<Level>();
             var spawnPoint = new GameObject("SpawnPoint").AddComponent<PlayerSpawnPoint>();
 
-            for (int i = 0; i < _levelData.Cube.Count; i++)
-                Instantiate(_levelBuilderData.Items[0].Item, _levelData.Cube[i], Quaternion.identity, level.transform);
-            for (int i = 0; i < _levelData.Cell.Count; i++)
-                Instantiate(_levelBuilderData.Items[1].Item, _levelData.Cell[i], Quaternion.identity, level.transform);
+            for (int i = 0; i < data.Cube.Count; i++)
+                Instantiate(_levelBuilderData.Items[0].Item, data.Cube[i], Quaternion.identity, level.transform);
+            for (int i = 0; i < data.Cell.Count; i++)
+                Instantiate(_levelBuilderData.Items[1].Item, data.Cell[i], Quaternion.identity, level.transform);
 
             level.PlayerPosition = spawnPoint;
             spawnPoint.transform.parent = level.transform;
-            spawnPoint.SetPosition(_levelData.PlayerSpawnPoint);
+            spawnPoint.SetPosition(data.PlayerSpawnPoint);
+
             return level;
         }
     }

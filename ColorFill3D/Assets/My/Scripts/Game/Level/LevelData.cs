@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Project.LevelBuilder
 {
+    [System.Serializable]
     public class LevelData
     {
         public Vector3 PlayerSpawnPoint;

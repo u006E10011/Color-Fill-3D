@@ -348,8 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelBuilderData: {fileID: 11400000, guid: 0e092d888523c724db227b54152becef, type: 2}
-  _levelSaver: {fileID: 0}
-  _path: Assets/StreamingAssets/Level_0.json
+  _levelDataProvider: {fileID: 11400000, guid: c7eade0bd31bb4e439915d579fd86002, type: 2}
   _step: 15
   _offsetY: 0.5
   _waitDestroyLevel: 3

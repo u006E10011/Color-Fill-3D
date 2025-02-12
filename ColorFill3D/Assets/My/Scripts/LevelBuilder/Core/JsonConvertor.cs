@@ -57,7 +57,7 @@ namespace Project.LevelBuilder
                 var json = File.ReadAllText(path);
                 return JsonUtility.FromJson<LevelData>(json);
             }
-            catch(System.Exception e)
+            catch (System.Exception e)
             {
                 Debug.LogError("Load exception: " + e.Message);
                 return null;
