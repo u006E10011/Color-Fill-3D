@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace YG
 {
     [System.Serializable]
@@ -16,7 +18,14 @@ namespace YG
         public string newPlayerName = "Hello!";
         public bool[] openLevels = new bool[3];
 
-        public int LevelIndex; 
+        public int Bank;
+        public int LevelIndex;
+
+        public int CurrentSkin;
+        public int CurrentThemeSkin;
+
+        public List<bool> Skins = new();
+        public List<bool> Theme = new();
 
         public SavesYG()
         {

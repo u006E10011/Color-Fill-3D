@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4628137745216863032}
   - component: {fileID: 2637622906452958009}
   - component: {fileID: 4904998699202940034}
+  - component: {fileID: 8675917152462094031}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -53,7 +54,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4313556329068228628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -170,6 +171,21 @@ MonoBehaviour:
   _sound:
     _startMove: {fileID: 8300000, guid: 52df4d5411bba3141b6aff80a1686d14, type: 3}
     _endMoving: {fileID: 8300000, guid: 137b7dd0b2efd394bbfc2141aa190cbf, type: 3}
+--- !u!114 &8675917152462094031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313556329068228628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e619875e86b3be54d97e2a8de36b7b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 2637622906452958009}
+  _data: {fileID: 11400000, guid: db61ccf81a2e1e44a91b11dbf25c8bc5, type: 2}
+  _scale: 0.8
 --- !u!1 &7060792917983299903
 GameObject:
   m_ObjectHideFlags: 0

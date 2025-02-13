@@ -1,5 +1,5 @@
 {
-    "idSave": 24,
+    "idSave": 13,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,5 +10,10 @@
         true,
         false
     ],
-    "LevelIndex": 19
+    "Bank": 0,
+    "LevelIndex": 13,
+    "CurrentSkin": 0,
+    "CurrentThemeSkin": 0,
+    "Skins": [],
+    "Theme": []
 }

@@ -8,6 +8,8 @@ namespace Project
         private static EventBus _instance;
         public static EventBus Instance => _instance ??= new();
 
+        public Action<int> OnGetSkin;
+
         public Action OnCompleteLevel;
         public Action OnNextLevel;
 
