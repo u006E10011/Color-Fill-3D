@@ -8,6 +8,8 @@ namespace Project
         public string Name;
         public int PassedLevelToUnlock;
 
+        [Space(10)] public Sprite Icon;
+
         [Space(10)]
         public Material MaterialCube;
         public Material MaterialCell;

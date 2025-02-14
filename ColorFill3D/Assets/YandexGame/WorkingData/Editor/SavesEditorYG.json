@@ -1,5 +1,5 @@
 {
-    "idSave": 66,
+    "idSave": 113,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -10,15 +10,15 @@
         true,
         false
     ],
-    "Bank": 13400,
+    "Bank": 24975,
     "LevelIndex": 19,
-    "CurrentSkin": 7,
+    "CurrentSkin": 5,
     "CurrentTheme": 0,
     "Skins": [
         true,
         true,
         true,
-        false,
+        true,
         true,
         true,
         true,
@@ -27,7 +27,7 @@
     ],
     "Theme": [
         true,
-        false,
+        true,
         false
     ]
 }

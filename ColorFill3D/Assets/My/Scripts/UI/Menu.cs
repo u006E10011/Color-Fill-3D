@@ -17,7 +17,9 @@ namespace Project
         private void Switch(bool isActive)
         {
             Time.timeScale = isActive ? 0 : 1;
-            _player.enabled = !isActive;
+
+            if (_player)
+                _player.enabled = !isActive;
         }
     }
 }

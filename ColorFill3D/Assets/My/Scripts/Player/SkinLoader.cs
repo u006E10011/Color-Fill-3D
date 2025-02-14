@@ -22,7 +22,7 @@ namespace Project
             if(_skin != null)
                 Destroy(_skin);
 
-            _skin = Instantiate(_data.Skins[index], transform.position, Quaternion.identity, _player.transform);
+            _skin = Instantiate(_data.Skin.Skins[index], transform.position, Quaternion.identity, _player.transform);
             _skin.transform.localScale = Vector3.one * _scale;
         }
     }

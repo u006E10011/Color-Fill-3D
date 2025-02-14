@@ -1,4 +1,5 @@
-﻿using N19;
+﻿using System.Linq;
+using N19;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -17,16 +18,16 @@ namespace Project
         {
             var index = transform.GetSiblingIndex();
 
-            if(index >= _data.Skins.Count)
+            if(index >= _data.Skin.Skins.Count)
             {
                 Debug.Log("IndexOutOfRangeException ".Color(ColorType.Red) + index.Color(ColorType.Cyan));
                 return;
             }
 
-            if (!YandexGame.savesData.Skins[index] && Shop.CheckBalance(YandexGame.savesData.Bank, _data.ParceSkin))
+            if (!YandexGame.savesData.Skins[index] && Shop.CheckBalance(YandexGame.savesData.Bank, _data.Skin.Parce))
             {
                 YandexGame.savesData.Skins[index] = true;
-                Shop.TakeBankValue(_data.ParceSkin);
+                Shop.TakeBankValue(_data.Skin.Parce);
             }
 
             if (YandexGame.savesData.Skins[index])

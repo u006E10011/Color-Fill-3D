@@ -11,6 +11,7 @@ namespace Project
         [SerializeField] private ThemeController _theme;
 
         [SerializeField, Space(10)] private Outline _outline;
+        [SerializeField] private Image _icon;
         [SerializeField] private Button _button;
 
         [SerializeField, Space(5)] private Translate _unlockInfo;
@@ -19,7 +20,10 @@ namespace Project
 
         private void OnValidate()
         {
-            gameObject.name = _data.Theme[transform.GetSiblingIndex()].Name;
+            _index = transform.GetSiblingIndex();
+
+            gameObject.name = _data.Theme[_index].Name;
+            _icon.sprite = _data.Theme[_index].Icon;
         }
 
         private void OnEnable()
@@ -34,11 +38,7 @@ namespace Project
             EventBus.Instance.OnUpdateShopUI -= UpdateUI;
         }
 
-        private void Start()
-        {
-            _index = transform.GetSiblingIndex();
-            UpdateUI();
-        }
+        private void Start() => UpdateUI();
 
         private void Select()
         {

@@ -8,7 +8,8 @@ namespace Project
     {
         [SerializeField] private ProductData _data;
 
-        [SerializeField, Space(10)] private Image _lockImage;
+        [SerializeField, Space(10)] private Image _icon;
+        [SerializeField] private Image _lockImage;
         [SerializeField] private Outline _outline;
 
         private int _index;
@@ -16,7 +17,8 @@ namespace Project
         private void OnValidate()
         {
             _index = transform.GetSiblingIndex();
-            gameObject.name = _data.Skins[_index].name;
+            gameObject.name = _data.Skin.Skins[_index].name;
+            _icon.sprite = _data.Skin.Icon[_index];
         }
 
         private void OnEnable() => EventBus.Instance.OnUpdateShopUI += UpdateUI;

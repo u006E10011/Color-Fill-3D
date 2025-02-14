@@ -9,6 +9,12 @@ public class GameObjectToPngRenderer : EditorWindow
     private Texture2D _previewTexture;
     private string _lastSavePath = "";
 
+    private float _ratioSize = 2;
+    private Color32 _backgroundColor = new(0, 0, 0, 0);
+
+    private Camera _camera;
+    private GameObject _object;
+
     [MenuItem("Tools/GameObject To Png Renderer")]
     public static void ShowWindow()
     {
@@ -21,6 +27,11 @@ public class GameObjectToPngRenderer : EditorWindow
 
         _objectToRender = (GameObject)EditorGUILayout.ObjectField("Object to Render", _objectToRender, typeof(GameObject), true);
         _resolution = EditorGUILayout.IntField("Resolution", _resolution);
+
+        GUILayout.Space(10);
+
+        _ratioSize = EditorGUILayout.FloatField("Ratio Size", _ratioSize);
+        _backgroundColor = EditorGUILayout.ColorField("Color", _backgroundColor);
 
         if (GUILayout.Button("Render Preview"))
         {
@@ -71,23 +82,27 @@ public class GameObjectToPngRenderer : EditorWindow
             bounds.Encapsulate(renderer.bounds);
         }
 
-        GameObject tempCameraObject = new GameObject("TempCamera");
-        Camera camera = tempCameraObject.AddComponent<Camera>();
+        _object = GameObject.Find("TempCamera");
 
-        camera.transform.position = bounds.center - Vector3.forward * bounds.size.magnitude;
-        camera.transform.LookAt(bounds.center);
-        camera.orthographic = true;
-        camera.orthographicSize = Mathf.Max(bounds.size.x, bounds.size.y) / 2;
-        camera.clearFlags = CameraClearFlags.SolidColor;
-        camera.backgroundColor = new Color(0, 0, 0, 0);
+        if (_object == null)
+        {
+            _object = new GameObject("TempCamera");
+            _camera = _object.AddComponent<Camera>();
+        }
+
+        //camera.transform.position = bounds.center - Vector3.forward * bounds.size.magnitude;
+        //_camera.transform.LookAt(bounds.center);
+        _camera.orthographicSize = Mathf.Max(bounds.size.x, bounds.size.y) / _ratioSize;
+        _camera.clearFlags = CameraClearFlags.SolidColor;
+        _camera.backgroundColor = _backgroundColor;
         RenderTexture renderTexture = new RenderTexture(_resolution, _resolution, 24, RenderTextureFormat.ARGB32);
         renderTexture.enableRandomWrite = true;
         RenderTexture.active = renderTexture;
-        camera.targetTexture = renderTexture;
+        _camera.targetTexture = renderTexture;
 
         // Rendering
         Texture2D screenshot = new Texture2D(_resolution, _resolution, TextureFormat.RGBA32, false);
-        camera.Render();
+        _camera.Render();
         RenderTexture.active = renderTexture;
         screenshot.ReadPixels(new Rect(0, 0, _resolution, _resolution), 0, 0);
         screenshot.Apply();
@@ -95,9 +110,9 @@ public class GameObjectToPngRenderer : EditorWindow
         _previewTexture = screenshot;
 
         RenderTexture.active = null;
-        camera.targetTexture = null;
+        _camera.targetTexture = null;
         DestroyImmediate(renderTexture);
-        DestroyImmediate(tempCameraObject);
+        //DestroyImmediate(tempCameraObject);
 
         Debug.Log("Preview successfully.");
     }
