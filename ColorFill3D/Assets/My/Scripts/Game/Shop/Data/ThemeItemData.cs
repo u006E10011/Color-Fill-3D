@@ -6,9 +6,10 @@ namespace Project
     public struct ThemeItemData
     {
         public string Name;
+        public int PassedLevelToUnlock;
 
         [Space(10)]
-        public Material Material;
-        public Color Color;
+        public Material MaterialCube;
+        public Material MaterialCell;
     }
 }

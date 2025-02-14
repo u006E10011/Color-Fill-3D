@@ -22,10 +22,16 @@ namespace YG
         public int LevelIndex;
 
         public int CurrentSkin;
-        public int CurrentThemeSkin;
+        public int CurrentTheme;
 
-        public List<bool> Skins = new();
-        public List<bool> Theme = new();
+        public List<bool> Skins = new()
+        {
+            true, false, false, false, false, false, false, false, false
+        };
+        public List<bool> Theme = new()
+        {
+            true, false, false
+        };
 
         public SavesYG()
         {

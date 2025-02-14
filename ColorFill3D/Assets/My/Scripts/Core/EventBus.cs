@@ -9,6 +9,7 @@ namespace Project
         public static EventBus Instance => _instance ??= new();
 
         public Action<int> OnGetSkin;
+        public Action<int> OnGetTheme;
 
         public Action OnCompleteLevel;
         public Action OnNextLevel;
@@ -17,5 +18,6 @@ namespace Project
         public Action<Vector3> OnMovePlayer;
 
         public Action OnUpdateProgress;
+        public Action OnUpdateThemeUI;
     }
 }

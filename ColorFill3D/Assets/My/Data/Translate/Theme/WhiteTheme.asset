@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7bcc236200a83743aff429dac2c861c, type: 3}
+  m_Name: WhiteTheme
+  m_EditorClassIdentifier: 
+  RU: "\u0411\u0435\u043B\u0430\u044F \u0442\u0435\u043C\u0430"
+  EN: The white theme
+  TR: 
+  Font: {fileID: 11400000, guid: 33bf480772389c143bc1288442d1e212, type: 2}
+  FontSizeRU: 0
+  FontSizeEN: 0
+  FontSizeTR: 0

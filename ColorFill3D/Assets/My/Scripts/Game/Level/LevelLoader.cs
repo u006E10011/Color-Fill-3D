@@ -54,6 +54,8 @@ namespace Project
             EventBus.Instance.OnNextLevel?.Invoke();
             EventBus.Instance.OnMoveCamera?.Invoke(CurrentLevel);
             EventBus.Instance.OnMovePlayer?.Invoke(CurrentLevel.PlayerPosition.Point);
+
+            EventBus.Instance.OnGetTheme?.Invoke(YandexGame.savesData.CurrentTheme);
         }
 
         private Level CreateLevel(LevelData data)

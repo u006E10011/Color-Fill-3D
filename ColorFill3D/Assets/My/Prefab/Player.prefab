@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2637622906452958009}
-  _data: {fileID: 11400000, guid: db61ccf81a2e1e44a91b11dbf25c8bc5, type: 2}
-  _scale: 0.8
+  _data: {fileID: 11400000, guid: f0a845483670a334f9bb8ec7df8be0b4, type: 2}
+  _scale: 0.6
 --- !u!1 &7060792917983299903
 GameObject:
   m_ObjectHideFlags: 0

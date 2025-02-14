@@ -15,7 +15,7 @@ namespace Project
         private void OnEnable() => EventBus.Instance.OnGetSkin += CreateSkin;
         private void OnDisable() => EventBus.Instance.OnGetSkin -= CreateSkin;
 
-        private void Start() => CreateSkin(YandexGame.savesData.CurrentThemeSkin);
+        private void Start() => CreateSkin(YandexGame.savesData.CurrentTheme);
 
         private void CreateSkin(int index)
         {
