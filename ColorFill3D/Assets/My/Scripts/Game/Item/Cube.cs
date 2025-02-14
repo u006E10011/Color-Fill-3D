@@ -1,4 +1,4 @@
-﻿using System;
+﻿using N19;
 using UnityEngine;
 
 namespace Project
@@ -13,6 +13,12 @@ namespace Project
 
         private void Get(int index)
         {
+            if (index >= _data.Theme.Count)
+            {
+                Debug.Log("IndexOutOfRangeException " + index.Color(ColorType.Cyan));
+                return;
+            }
+
             _renderer.material = _data.Theme[index].MaterialCube;
         }
     }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using N19;
+using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
@@ -7,34 +8,33 @@ namespace Project
     public class PurchaseButtonSkin : MonoBehaviour
     {
         [SerializeField] private ProductData _data;
-
-        [SerializeField, Space(10)] private Image _lockImage;
         [SerializeField] private Button _buton;
-
-        private int _index;
 
         private void OnEnable() => _buton.onClick.AddListener(Purchase);
         private void OnDisable() => _buton.onClick.RemoveListener(Purchase);
 
-        private void Start()
-        {
-            _index = transform.GetSiblingIndex();
-            _lockImage.gameObject.SetActive(!YandexGame.savesData.Skins[_index]);
-        }
-
         private void Purchase()
         {
-            if (!YandexGame.savesData.Skins[_index] && Shop.CheckBalance(YandexGame.savesData.Bank, _data.ParceSkin))
+            var index = transform.GetSiblingIndex();
+
+            if(index >= _data.Skins.Count)
             {
-                YandexGame.savesData.Skins[_index] = true;
+                Debug.Log("IndexOutOfRangeException ".Color(ColorType.Red) + index.Color(ColorType.Cyan));
+                return;
+            }
+
+            if (!YandexGame.savesData.Skins[index] && Shop.CheckBalance(YandexGame.savesData.Bank, _data.ParceSkin))
+            {
+                YandexGame.savesData.Skins[index] = true;
                 Shop.TakeBankValue(_data.ParceSkin);
             }
 
-            if (YandexGame.savesData.Skins[_index])
+            if (YandexGame.savesData.Skins[index])
             {
-                YandexGame.savesData.CurrentTheme = _index;
+                YandexGame.savesData.CurrentSkin = index;
                 YandexGame.SaveProgress();
-                EventBus.Instance.OnGetSkin?.Invoke(_index);
+                EventBus.Instance.OnGetSkin?.Invoke(index);
+                EventBus.Instance.OnUpdateShopUI?.Invoke();
             }
         }
     }

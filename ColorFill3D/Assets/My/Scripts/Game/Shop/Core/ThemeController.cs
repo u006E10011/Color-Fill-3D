@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using N19;
+using UnityEngine;
 using YG;
 
 namespace Project
@@ -9,6 +10,12 @@ namespace Project
 
         public void TrySetTheme(int index)
         {
+            if(index >= _data.Theme.Count)
+            {
+                Debug.Log("IndexOutOfRangeException ".Color(ColorType.Red) + index.Color(ColorType.Cyan));
+                return;
+            }
+
             if (_data.Theme[index].PassedLevelToUnlock < YandexGame.savesData.LevelIndex)
             {
                 YandexGame.savesData.Theme[index] = true;
@@ -16,7 +23,7 @@ namespace Project
 
                 YandexGame.SaveProgress();
                 EventBus.Instance.OnGetTheme?.Invoke(index);
-                EventBus.Instance.OnUpdateThemeUI?.Invoke();
+                EventBus.Instance.OnUpdateShopUI?.Invoke();
             }
         }
     }

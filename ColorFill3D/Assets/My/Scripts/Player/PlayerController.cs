@@ -86,12 +86,12 @@ namespace Project
             _targetPosition = vector;
         }
 
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(_targetPosition, 0.3f);
-        }
-#endif
+//#if UNITY_EDITOR
+//        private void OnDrawGizmos()
+//        {
+//            Gizmos.color = Color.blue;
+//            Gizmos.DrawSphere(_targetPosition, 0.3f);
+//        }
+//#endif
     }
 }

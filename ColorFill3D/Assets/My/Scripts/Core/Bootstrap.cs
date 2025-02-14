@@ -7,6 +7,7 @@ namespace Project
         [SerializeField] private LevelLoader _levelLoader;
         [SerializeField] private CameraFollower _camera;
         [SerializeField] private PlayerController _playerController;
+        [SerializeField] private Menu _menu;
 
         private void Awake()
         {
@@ -14,7 +15,9 @@ namespace Project
 
             _levelLoader.Init();
             _camera.MoveToTarget(_levelLoader.CurrentLevel);
-            Instantiate(_playerController, _levelLoader.CurrentLevel.PlayerPosition.Point, Quaternion.identity);
+
+            var player = Instantiate(_playerController, _levelLoader.CurrentLevel.PlayerPosition.Point, Quaternion.identity);
+            _menu.Init(player);
         }
     }
 }

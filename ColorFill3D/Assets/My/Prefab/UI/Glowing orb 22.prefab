@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2276732192212042382}
   - component: {fileID: 6070081531802208265}
   - component: {fileID: 5757772099842631416}
+  - component: {fileID: 4730411553949189719}
   m_Layer: 5
-  m_Name: SkinItem2
+  m_Name: Glowing orb 22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,8 +153,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: f0a845483670a334f9bb8ec7df8be0b4, type: 2}
-  _lockImage: {fileID: 8808704935224765892}
   _buton: {fileID: 6070081531802208265}
+--- !u!114 &4730411553949189719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3664948706799928454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf371121f3412e640a0e62f7be5d4457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: f0a845483670a334f9bb8ec7df8be0b4, type: 2}
+  _lockImage: {fileID: 8808704935224765892}
+  _outline: {fileID: 2276732192212042382}
 --- !u!1 &4202700869242360815
 GameObject:
   m_ObjectHideFlags: 0

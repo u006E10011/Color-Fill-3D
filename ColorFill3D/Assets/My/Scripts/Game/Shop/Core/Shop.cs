@@ -3,7 +3,7 @@ using YG;
 
 namespace Project
 {
-    public class Shop : MonoBehaviour
+    public class Shop
     {
         public static bool CheckBalance(int balance, int parce)
         {

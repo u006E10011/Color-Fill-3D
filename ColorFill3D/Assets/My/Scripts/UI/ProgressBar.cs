@@ -1,7 +1,6 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace Project
 {
@@ -9,7 +8,7 @@ namespace Project
     {
         [SerializeField] private Image _fill;
         [SerializeField] private ColorData _data;
-        [SerializeField] private TMP_Text _levelText;
+        [SerializeField] private N19.Translate _levelText;
 
         private float _count;
 
@@ -34,7 +33,7 @@ namespace Project
         private void UpdateProgress()
         {
             _fill.fillAmount = 1f - (Brush.Count() / _count);
-            _levelText.text = Brush.Count().ToString();
+            _levelText.Replace(YandexGame.savesData.LevelIndex + 1);
         }
 
         private void UpdateData()

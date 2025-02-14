@@ -32,6 +32,12 @@ namespace Project
 
         private void Get(int index)
         {
+            if (index >= _productData.Theme.Count)
+            {
+                Debug.Log("IndexOutOfRangeException " + index.Color(ColorType.Cyan));
+                return;
+            }
+
             _meshRenderer.material = _productData.Theme[index].MaterialCell;
         }
     }

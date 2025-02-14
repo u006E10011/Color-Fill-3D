@@ -25,13 +25,13 @@ namespace Project
         private void OnEnable()
         {
             _button.onClick.AddListener(Select);
-            EventBus.Instance.OnUpdateThemeUI += UpdateUI;
+            EventBus.Instance.OnUpdateShopUI += UpdateUI;
         }
 
         private void OnDisable()
         {
             _button.onClick.RemoveListener(Select);
-            EventBus.Instance.OnUpdateThemeUI -= UpdateUI;
+            EventBus.Instance.OnUpdateShopUI -= UpdateUI;
         }
 
         private void Start()

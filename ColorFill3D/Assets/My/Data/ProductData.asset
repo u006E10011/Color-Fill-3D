@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff414280e0bda94d8d6aa1708ab353f, type: 3}
   m_Name: ProductData
   m_EditorClassIdentifier: 
-  ParceSkin: 0
+  ParceSkin: 300
   Skins:
   - {fileID: 1267321182873844, guid: 3492210750e350a40838b318a4d4db1d, type: 3}
   - {fileID: 1960382934384514, guid: f06da6411a4b5cf49b36b1f079d5d555, type: 3}

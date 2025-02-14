@@ -18,6 +18,6 @@ namespace Project
         public Action<Vector3> OnMovePlayer;
 
         public Action OnUpdateProgress;
-        public Action OnUpdateThemeUI;
+        public Action OnUpdateShopUI;
     }
 }
