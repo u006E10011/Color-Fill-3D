@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Project
 {
     [System.Serializable]
     public class PlayerSoundController
     {
+        [SerializeField] private AudioMixerGroup _mixer;
+
         [SerializeField] private AudioClip _startMove;
         [SerializeField] private AudioClip _endMoving;
 
@@ -17,7 +20,7 @@ namespace Project
             {
                 _isPlayeringEndMovingSound = false;
                 _oldDirection = direction;
-                N19.SoundControllerGlobal.Instance.PlaySFX(_startMove);
+                N19.SoundControllerGlobal.Instance.PlaySFX(_startMove).SetMixer(_mixer);
             }
         }
 
@@ -27,7 +30,7 @@ namespace Project
             if (!_isPlayeringEndMovingSound)
             {
                 _isPlayeringEndMovingSound = true;
-                N19.SoundControllerGlobal.Instance.PlaySFX(_endMoving);
+                N19.SoundControllerGlobal.Instance.PlaySFX(_endMoving).SetMixer(_mixer);
             }
         }
     }

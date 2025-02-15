@@ -169,6 +169,7 @@ MonoBehaviour:
   _offsetPositionToPoint: 0.5
   _offset: 0.1
   _sound:
+    _mixer: {fileID: 943818594461046113, guid: 354dc71f5e7b33642b114f9739a93cbe, type: 2}
     _startMove: {fileID: 8300000, guid: 52df4d5411bba3141b6aff80a1686d14, type: 3}
     _endMoving: {fileID: 8300000, guid: 137b7dd0b2efd394bbfc2141aa190cbf, type: 3}
 --- !u!114 &8675917152462094031

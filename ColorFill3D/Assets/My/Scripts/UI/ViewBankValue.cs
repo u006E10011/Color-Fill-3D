@@ -7,7 +7,12 @@ namespace Project
     {
         [SerializeField] private TMP_Text _valueText;
 
-        private void OnEnable() => EventBus.Instance.OnUpdateShopUI += UpdateUI;
+        private void OnEnable()
+        {
+            EventBus.Instance.OnUpdateShopUI += UpdateUI;
+            UpdateUI();
+        }
+
         private void OnDisable() => EventBus.Instance.OnUpdateShopUI -= UpdateUI;
 
         private void UpdateUI()

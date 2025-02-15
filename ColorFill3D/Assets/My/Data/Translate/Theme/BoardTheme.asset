@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bcc236200a83743aff429dac2c861c, type: 3}
   m_Name: BoardTheme
   m_EditorClassIdentifier: 
-  RU: "\u0414\u043E\u0441\u043A\u0430"
+  RU: "\u041E\u0431\u044B\u0447\u043D\u0430\u044F \u0442\u0435\u043C\u0430"
   EN: Board
   TR: 
   Font: {fileID: 11400000, guid: 33bf480772389c143bc1288442d1e212, type: 2}

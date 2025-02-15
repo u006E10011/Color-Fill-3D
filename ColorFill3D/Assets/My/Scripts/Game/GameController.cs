@@ -4,6 +4,8 @@ namespace Project
 {
     public class GameController : MonoBehaviour
     {
+        [SerializeField] private AudioClip _winClip;
+
         private void OnEnable()
         {
             EventBus.Instance.OnUpdateProgress += TryWinGame;
@@ -22,8 +24,7 @@ namespace Project
 
         private void Win()
         {
-            Debug.Log("Winner");
-
+            N19.SoundControllerGlobal.Instance.PlaySFX(_winClip);
             EventBus.Instance.OnCompleteLevel?.Invoke();
         }
     }

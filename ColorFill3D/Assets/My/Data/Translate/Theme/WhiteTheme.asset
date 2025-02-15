@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bcc236200a83743aff429dac2c861c, type: 3}
   m_Name: WhiteTheme
   m_EditorClassIdentifier: 
-  RU: "\u0411\u0435\u043B\u0430\u044F \u0442\u0435\u043C\u0430"
+  RU: "\u0421\u0432\u0435\u0442\u043B\u0430\u044F \u0442\u0435\u043C\u0430"
   EN: The white theme
   TR: 
   Font: {fileID: 11400000, guid: 33bf480772389c143bc1288442d1e212, type: 2}
