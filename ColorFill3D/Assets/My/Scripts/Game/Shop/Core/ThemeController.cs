@@ -16,7 +16,7 @@ namespace Project
                 return;
             }
 
-            if (_data.Theme[index].PassedLevelToUnlock < YandexGame.savesData.LevelIndex)
+            if (_data.Theme[index].PassedLevelToUnlock <= YandexGame.savesData.LevelIndex)
             {
                 YandexGame.savesData.Theme[index] = true;
                 YandexGame.savesData.CurrentTheme = index;
