@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PassedLevelToUnlock
   m_EditorClassIdentifier: 
   RU: "\u0420\u0430\u0437\u0431\u043B\u043E\u043A\u0438\u0440\u0443\u0435\u0442\u0441\u044F
-    \u043F\u043E\u0441\u043B\u0435 &"
+    \u043F\u043E\u0441\u043B\u0435 & \u0443\u0440\u043E\u0432\u043D\u044F"
   EN: Unblocks after &
   TR: 
   Font: {fileID: 11400000, guid: 33bf480772389c143bc1288442d1e212, type: 2}
